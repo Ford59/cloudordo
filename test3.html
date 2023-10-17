@@ -1,0 +1,14 @@
+<script>
+// 获取本地 blob 视频
+const blobVideo = await fetch("https://dcu30chsckoal.cloudfront.net/small+2.mp4").then(response => response.blob());
+
+// 创建播放器
+const player = document.createElement("video");
+player.srcObject = blobVideo;
+player.autoplay = true;
+player.controls = true;
+
+// 添加播放器到页面
+document.body.appendChild(player);
+</script>
+<video controls src=""></video>
