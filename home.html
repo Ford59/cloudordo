@@ -10,5 +10,16 @@
             })
             .catch(error => {
                 console.error('加载视频时出现错误：', error);
-            });</script>
+            });
+
+    // 添加代码防止视频被单独打开页面访问
+    const video = document.getElementById('video');
+    video.addEventListener('click', () => {
+        if (window.location.href === window.origin) {
+            return;
+        }
+
+        alert('抱歉，您无权访问此视频。');
+    });
+</script>
 <video id="video" src="" controls></video>
