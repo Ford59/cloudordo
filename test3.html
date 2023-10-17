@@ -1,19 +1,17 @@
 <script>
-// 获取本地 blob 视频
-const blobVideo = await fetch("https://dcu30chsckoal.cloudfront.net/small+2.mp4").then(response => response.blob());
+const videoUrl = 'https://dcu30chsckoal.cloudfront.net/small+2.mp4'; // 替换为你的视频链接
 
-// 播放 blob 视频
-const video = document.createElement("video");
-video.srcObject = blobVideo;
-video.autoplay = true;
-video.controls = true;
+// 获取 blob 视频
+const blob = await fetch(videoUrl).then(response => response.blob());
 
-// 监听视频播放完成事件
-video.addEventListener("ended", () => {
-  // 视频播放完成后执行操作
-});
+// 创建 RTCPeerConnection 对象
+const peerConnection = new RTCPeerConnection();
 
-// 添加视频元素到页面
-document.body.appendChild(video);
+// 添加视频流
+peerConnection.addStream(new MediaStream([new MediaStreamTrack('video', blob)]));
+
+// 创建视频元素
+const videoPlayer = document.getElementById('video');
+videoPlayer.srcObject = peerConnection.localStreams[0];
 </script>
-<video id="blobVideo" controls src=""></video>
+<video id="video" id="videoUrl" id="blob" controls src=""></video>
