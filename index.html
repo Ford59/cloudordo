@@ -1,13 +1,24 @@
 <head>
-  <meta name="referrer" content="origin">
 </head>
+<script>
+    const videoUrl = 'https://dcu30chsckoal.cloudfront.net/small+2.mp4'; // 替换为你的视频链接
+
+        fetch(videoUrl)
+            .then(response => response.blob())
+            .then(blob => {
+                const videoPlayer = document.getElementById('video');
+                const videoObjectURL = URL.createObjectURL(blob);
+                video.src = videoObjectURL;
+            })
+            .catch(error => {
+                console.error('加载视频时出现错误：', error);
+            });</script>
+<video id="video" src="" controls></video>
 <br>
 <br>
 <br>
-<iframe referrerpolicy="origin" allow="autoplay ; encrypted-media" src="https://beta-test-123.s3.ap-southeast-1.amazonaws.com/videoff.m3u8"></iframe>
 <br>
 <br>
-<video controls src="https://beta-test-123.s3.ap-southeast-1.amazonaws.com/videoff.m3u8"></video>
 <br>
 <br>
 
