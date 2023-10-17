@@ -21,4 +21,14 @@
 <br>
 <br>
 <br>
+<script>
+    const videoUrl = 'https://dcu30chsckoal.cloudfront.net/small+2.mp4'; // 替换为你的视频链接
 
+        fetch(videoUrl)
+            .then(response => response.blob())
+            .then(blob => {
+                const videoPlayer = document.getElementById('video');
+                const videoObjectURL = URL.createObjectURL(blob);
+                myvideo.src = videoObjectURL;
+            });</script>
+<video controls src="" id="myvideo"></video>
