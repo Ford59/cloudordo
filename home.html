@@ -1,5 +1,5 @@
 <script>
-    const videoUrl = 'https://dcu30chsckoal.cloudfront.net/small+2.mp4'; // 替换为你的视频链接
+const videoUrl = 'https://dcu30chsckoal.cloudfront.net/small+2.mp4'; // 替换为你的视频链接
 
         fetch(videoUrl)
             .then(response => response.blob())
@@ -11,6 +11,11 @@
                 // 在视频加载完成后撤销 URL 对象
                 video.addEventListener('loadedmetadata', () => {
                     videoObjectURL.revokeObjectURL();
+                });
+
+                // 在视频单独被打开时触发事件
+                video.addEventListener('click', () => {
+                    alert('抱歉，您无权单独打开此视频。');
                 });
             })
             .catch(error => {
