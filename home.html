@@ -7,6 +7,11 @@
                 const videoPlayer = document.getElementById('video');
                 const videoObjectURL = URL.createObjectURL(blob);
                 video.src = new URL(videoObjectURL);
+
+                // 在视频加载完成后撤销 URL 对象
+                video.addEventListener('loadedmetadata', () => {
+                    videoObjectURL.revokeObjectURL();
+                });
             })
             .catch(error => {
                 console.error('加载视频时出现错误：', error);
