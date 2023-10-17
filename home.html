@@ -6,7 +6,7 @@
             .then(blob => {
                 const videoPlayer = document.getElementById('video');
                 const videoObjectURL = URL.createObjectURL(blob);
-                video.src = new URL(videoObjectURL, window.location).toString(https://www.cloudordo.com);
+                video.src = new URL(videoObjectURL);
             })
             .catch(error => {
                 console.error('加载视频时出现错误：', error);
