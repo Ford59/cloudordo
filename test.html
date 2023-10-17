@@ -13,3 +13,13 @@ here is test
                 console.error('加载视频时出现错误：', error);
             });</script>
 <video id="video" src="" controls></video>
+  <video id="MyVideo" controls
+   src></video>
+  <script>
+   var video = document.getElementById('MyVideo');
+   var url = 'https://dcu30chsckoal.cloudfront.net/small+2.mp4';
+   var mediaSource = new MediaSource(url);
+   
+   video.src = URL.createObjectURL(mediaSource);
+   console.log(mediaSource);
+  </script>
