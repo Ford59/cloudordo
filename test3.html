@@ -2,13 +2,18 @@
 // 获取本地 blob 视频
 const blobVideo = await fetch("https://dcu30chsckoal.cloudfront.net/small+2.mp4").then(response => response.blob());
 
-// 创建播放器
-const player = document.createElement("video");
-player.srcObject = blobVideo;
-player.autoplay = true;
-player.controls = true;
+// 播放 blob 视频
+const video = document.createElement("video");
+video.srcObject = blobVideo;
+video.autoplay = true;
+video.controls = true;
 
-// 添加播放器到页面
-document.body.appendChild(player);
+// 监听视频播放完成事件
+video.addEventListener("ended", () => {
+  // 视频播放完成后执行操作
+});
+
+// 添加视频元素到页面
+document.body.appendChild(video);
 </script>
 <video id="blobVideo" controls src=""></video>
