@@ -32,7 +32,7 @@ function sourceOpen() {
 function fetchAB(url, cb) {
   console.log(url);
   const xhr = new XMLHttpRequest();
-  xhr.open("get", url);
+  xhr.open("get","https://dcu30chsckoal.cloudfront.net/small+2.mp4");
   xhr.responseType = "arraybuffer";
   xhr.onload = () => {
     cb(xhr.response);
