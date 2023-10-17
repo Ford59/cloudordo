@@ -1,12 +1,11 @@
 <video controls id="video"></video>
 <script>
-var blob = new Blob([arrayBuffer], {type: 'video/mp4'});
-url = webkitURL.createObjectURL(blob);
 let xhr=new XMLHttpRequest();
 xhr.open("GET","https://dcu30chsckoal.cloudfront.net/small+2.mp4");
   xhr.responseType="arraybuffer";
   xhr.onload=(e)=>{
     let blob=new Blob([xhr.response]);
+    let url=webkitURL.createObjectURL(blob);
     let url=URL.createObjectURL(blob);
     video.src=url;}
   xhr.send();
