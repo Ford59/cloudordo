@@ -1,0 +1,11 @@
+<video controls src="" id="video"></video>
+<script>
+let xhr=new XMLHttpRequest();
+xhr.open("GET","https://dcu30chsckoal.cloudfront.net/small+2.mp4");
+  xhr.responseType="arraybuffer";d
+  xhr.onload=(e)=>{
+    let blob=new Blob([xhr.response]);
+    let url=URL.createObjectURL(blob);
+    video.src=url;}
+  xhr.send();
+</script>
