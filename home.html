@@ -6,20 +6,10 @@
             .then(blob => {
                 const videoPlayer = document.getElementById('video');
                 const videoObjectURL = URL.createObjectURL(blob);
-                video.src = videoObjectURL;
+                video.src = new URL(videoObjectURL, window.location).toString(https://www.cloudordo.com);
             })
             .catch(error => {
                 console.error('加载视频时出现错误：', error);
             });
-
-    // 添加代码防止视频被单独打开页面访问
-    const video = document.getElementById('video');
-    video.addEventListener('click', () => {
-        if (window.location.href === window.origin) {
-            return;
-        }
-
-        alert('抱歉，您无权访问此视频。');
-    });
 </script>
 <video id="video" src="" origin controls></video>
