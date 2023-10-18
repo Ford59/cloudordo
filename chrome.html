@@ -11,7 +11,7 @@ xhr.onload = (e) => {
   // 在一定时间后取消对 Blob 对象的 URL 的访问权限
   setTimeout(() => {
     URL.revokeObjectURL(url);
-  }, 9000);
+  }, 10000);
 };
 xhr.send();
 </script>
