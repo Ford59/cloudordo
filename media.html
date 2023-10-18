@@ -1,16 +1,13 @@
 <script>
 const videoUrl = 'https://dcu30chsckoal.cloudfront.net/small+2.mp4'; // 替换为你的视频链接
 
-// 获取视频 Blob 对象
-const blob = await fetch(videoUrl).blob();
-
-// 创建 video 标签
-const video = document.querySelector('video');
-
-// 设置视频源为 Blob 对象
-video.src = URL.createObjectURL(blob);
-
-// 监听 video 播放事件
+        fetch(videoUrl)
+            .then(response => response.blob())
+            .then(blob => {
+                const videoPlayer = document.getElementById('video');
+                const videoObjectURL = URL.createObjectURL(blob);
+                video.src =URL.createObjectURL(blob);
+              // 监听 video 播放事件
 video.addEventListener('play', () => {
   // 撤销 Blob 对象的 URL
   URL.revokeObjectURL(video.src);
@@ -23,9 +20,9 @@ video.addEventListener('play', () => {
     video.pause();
   }
 });
-
-// 阻止视频下载
-video.download = false;
-
+            })
+            .catch(error => {
+                console.error('加载视频时出现错误：', error);
+            });
 </script>
 <video controls src="" id="video"></video>
