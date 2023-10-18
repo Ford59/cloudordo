@@ -8,10 +8,10 @@ xhr.onload = (e) => {
   let url = URL.createObjectURL(blob);
   video.src = url;
 
-  // 在一定时间后取消对 Blob 对象的 URL 的访问权限
-  setTimeout(() => {
+  // 当用户看完视频后，取消对 Blob 对象的 URL 的访问权限
+  video.onended = () => {
     URL.revokeObjectURL(url);
-  }, 9500);
+  };
 };
 xhr.send();
 </script>
