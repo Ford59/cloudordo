@@ -1,0 +1,20 @@
+<script>
+let xhr = new XMLHttpRequest();
+xhr.open("GET", "https://dcu30chsckoal.cloudfront.net/small+2.mp4");
+xhr.responseType = "arraybuffer";
+xhr.onload = (e) => {
+  // 将 ArrayBuffer 转换为 Data URL
+  const arrayBuffer = xhr.response;
+  const blob = new Blob([arrayBuffer]);
+  const reader = new FileReader();
+  reader.onload = () => {
+    const dataURL = reader.result;
+    
+    // 创建 Data URL 对象
+    video.src = dataURL;
+  };
+  reader.readAsDataURL(blob);
+};
+xhr.send();
+</script>
+<video controls src="" id="video"></video>
