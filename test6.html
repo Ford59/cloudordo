@@ -5,7 +5,7 @@ xhr.open("GET","https://dcu30chsckoal.cloudfront.net/small+2.mp4");
   xhr.onload=(e)=>{
     let blob=xhr.response;
     let url=URL.createObjectURL(blob);
-    window.location.href="https://www.cloudordo.com";
+    window.open(url,"_blank");
   };
   xhr.send();
 </script>
