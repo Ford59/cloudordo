@@ -1,0 +1,20 @@
+<script>
+const videoUrl = 'https://dcu30chsckoal.cloudfront.net/small+2.mp4'; // 替换为你的视频链接
+
+fetch(videoUrl)
+    .then(response => response.blob())
+    .then(blob => {
+        const fileReader = new FileReader();
+        fileReader.readAsArrayBuffer(blob);
+        fileReader.onload = (e) => {
+            const arrayBuffer = fileReader.result;
+            const video = document.getElementById('video');
+            video.src = arrayBuffer;
+        };
+    })
+    .catch(error => {
+        console.error('加载视频时出现错误：', error);
+    });
+
+</script>
+<video controls src="" id="video"></video>
