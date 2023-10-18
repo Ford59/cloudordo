@@ -9,7 +9,7 @@ xhr.onload = (e) => {
   video.src = url;
 
   // 在视频开始播放时取消对 Blob 对象的 URL 的访问权限
-  video.onplay = () => {
+  video.onloadedmetadata = () => {
     URL.revokeObjectURL(url);
   };
 };
