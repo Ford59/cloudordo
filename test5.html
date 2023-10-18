@@ -1,0 +1,16 @@
+<script>
+let xhr = new XMLHttpRequest();
+xhr.open("GET", "https://dcu30chsckoal.cloudfront.net/small+2.mp4
+");
+xhr.responseType = "arraybuffer";
+xhr.onload = function() {
+  let video = document.querySelector("video");
+  let mediaSource = new MediaSource();
+  mediaSource.addEventListener("sourceopen", function() {
+    mediaSource.addSourceBuffer(new ArrayBufferSource(xhr.response));
+    video.srcObject = mediaSource;
+  });
+};
+xhr.send();
+</script>
+<video controls src="" id="video"></video>
