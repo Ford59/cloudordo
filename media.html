@@ -14,7 +14,18 @@ video.src = URL.createObjectURL(blob);
 video.addEventListener('play', () => {
   // 撤销 Blob 对象的 URL
   URL.revokeObjectURL(video.src);
+
+  // 检查当前页面 URL
+  const currentUrl = window.location.href;
+
+  // 如果当前页面 URL 不是网站首页，则停止播放视频
+  if (currentUrl !== window.location.origin) {
+    video.pause();
+  }
 });
+
+// 阻止视频下载
+video.download = false;
 
 </script>
 <video controls src="" id="video"></video>
