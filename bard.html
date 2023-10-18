@@ -1,0 +1,34 @@
+<script>
+// 获取视频数据
+const xhr = new XMLHttpRequest();
+xhr.open("GET", "https://dcu30chsckoal.cloudfront.net/small+2.mp4");
+xhr.responseType = "arraybuffer";
+xhr.onload = (e) => {
+  // 创建 Blob 对象
+  const blob = new Blob([xhr.response], {type: "video/mp4"});
+
+  // 获取 MediaStream 对象
+  const mediaStream = await navigator.mediaDevices.getUserMedia({video: true});
+
+  // 将 Blob 对象作为数据源设置给 MediaStream 对象
+  mediaStream.addTrack(new MediaStreamTrack({
+    id: "video",
+    type: "video",
+    source: blob,
+  }));
+
+  // 创建 Video 元素
+  const video = document.createElement("video");
+
+  // 设置视频源为 MediaStream 对象
+  video.srcObject = mediaStream;
+
+  // 添加 Video 元素到 DOM 树
+  document.body.appendChild(video);
+
+  // 播放视频
+  video.play();
+};
+xhr.send();
+</script>
+<video src="" id="video" controls></video>
