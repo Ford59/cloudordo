@@ -1,25 +1,17 @@
 <video src controls id="video"></video>
-<script>let xhr = new XMLHttpRequest();
+<script>
+  let xhr = new XMLHttpRequest();
 xhr.open("GET", "https://dcu30chsckoal.cloudfront.net/small+2.mp4");
 xhr.responseType = "blob";
 xhr.onload = (e) => {
   let blob = xhr.response;
   let url = URL.createObjectURL(blob);
   video.src = url;
-  
- // 在用户下载视频后取消对 Blob 对象的 URL 的访问权限
-  setTimeout(() => {
+
+  // 在视频开始播放时取消对 Blob 对象的 URL 的访问权限
+  video.onplay = () => {
     URL.revokeObjectURL(url);
-  }, 5000);
-  
-  // 在视频看完后取消对 Blob 对象的 URL 的访问权限
-  video.onended = () => {
-    URL.revokeObjectURL(url);
-    
-  // 在用户离开页面后取消对 Blob 对象的 URL 的访问权限
-  window.addEventListener("beforeunload", () => {
-    URL.revokeObjectURL(url);
-  });
+  };
 };
 xhr.send();
 </script>
