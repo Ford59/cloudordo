@@ -10,17 +10,22 @@ fileInput.addEventListener("change", e => {
     const dataUrl = reader.result;
 
     // 创建一个新元素来显示链接。
-    const link = document.createElement("div");
-    link.textContent = dataUrl;
+    const link = document.createElement("a");
+    link.textContent = "点击此处查看";
+    link.href = dataUrl;
 
     // 将元素添加到文档 body。
     document.body.appendChild(link);
+
+    // 显示生成成功的 data URL 链接显示窗口。
+    const window = document.getElementById("window");
+    window.textContent = dataUrl;
+    window.style.display = "block";
   });
 
   reader.readAsDataURL(file);
 });
-
 </script>
-<input id="fileInput" type="file">
-<br>
 <div id="link"></div>
+<div id="window"></div>
+<input type="file" id="fileInput">
