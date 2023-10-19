@@ -6,18 +6,21 @@ fileInput.addEventListener("change", e => {
   const reader = new FileReader();
 
   reader.addEventListener("load", () => {
-    const img = document.createElement("img");
-    img.src = reader.result;
-    document.body.appendChild(img);
+    // 获取生成的 data URL/URI 链接。
+    const dataUrl = reader.result;
+
+    // 创建一个新元素来显示链接。
+    const link = document.createElement("div");
+    link.textContent = dataUrl;
+
+    // 将元素添加到文档 body。
+    document.body.appendChild(link);
   });
 
   reader.readAsDataURL(file);
-
-  // 添加显示视频代码
-  const video = document.createElement("video");
-  video.src = reader.result;
-  video.controls = true;
-  document.body.appendChild(video);
 });
+
 </script>
 <input id="fileInput" type="file">
+<br>
+<div id="link"></div>
