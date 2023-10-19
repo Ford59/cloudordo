@@ -6,23 +6,27 @@ const videoUrl = 'https://dcu30chsckoal.cloudfront.net/small+2.mp4'; // 替换�
             .then(blob => {
                 const videoPlayer = document.getElementById('video');
                 const videoObjectURL = URL.createObjectURL(blob);
-                video.src =URL.createObjectURL(blob);
-              // 监听 video 播放事件
-video.addEventListener('play', () => {
-  // 撤销 Blob 对象的 URL
-  URL.revokeObjectURL(video.src);
+                video.src = new URL(videoObjectURL, window.location.origin).toString();
 
-  // 检查当前页面 URL
-  const currentUrl = window.location.href;
+                // 添加播放成功事件监听器
+                video.addEventListener('play', () => {
+                    // 获取视频标签的 src 属性
+                    const videoSrc = video.src;
 
-  // 如果当前页面 URL 不是网站首页，则停止播放视频
-  if (currentUrl !== window.location.origin) {
-    video.pause();
-  }
-});
+                    // 添加 window.onbeforeunload 事件监听器
+                    window.addEventListener('beforeunload', () => {
+                        // 判断视频标签是否在其他页面打开
+                        const videoNode = document.querySelector(videoSrc);
+                        if (videoNode && videoNode.parentNode !== document.body) {
+                            // 撤销链接
+                            URL.revokeObjectURL(videoObjectURL);
+                        }
+                    });
+                });
             })
             .catch(error => {
                 console.error('加载视频时出现错误：', error);
             });
+
 </script>
 <video controls src="" id="video"></video>
