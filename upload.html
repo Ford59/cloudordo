@@ -13,14 +13,11 @@ fileInput.addEventListener("change", e => {
 
   reader.readAsDataURL(file);
 
-  // 检查文件类型
-  if (file.type.match("video/")) {
-    // 添加显示视频代码
-    const video = document.createElement("video");
-    video.src = reader.result;
-    video.controls = true;
-    document.body.appendChild(video);
-  }
+  // 添加显示视频代码
+  const video = document.createElement("video");
+  video.src = reader.result;
+  video.controls = true;
+  document.body.appendChild(video);
 });
 </script>
 <input id="fileInput" type="file">
