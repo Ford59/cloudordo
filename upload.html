@@ -1,0 +1,26 @@
+<script>
+const fileInput = document.getElementById("fileInput");
+
+fileInput.addEventListener("change", e => {
+  const file = fileInput.files[0];
+  const reader = new FileReader();
+
+  reader.addEventListener("load", () => {
+    const img = document.createElement("img");
+    img.src = reader.result;
+    document.body.appendChild(img);
+  });
+
+  reader.readAsDataURL(file);
+
+  // 检查文件类型
+  if (file.type.match("video/")) {
+    // 添加显示视频代码
+    const video = document.createElement("video");
+    video.src = reader.result;
+    video.controls = true;
+    document.body.appendChild(video);
+  }
+});
+</script>
+<input id="fileInput" type="file">
