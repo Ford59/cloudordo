@@ -10,18 +10,34 @@ const videoUrl = 'https://dcu30chsckoal.cloudfront.net/small+2.mp4'; // 替换�
 
                 // 添加播放成功事件监听器
                 video.addEventListener('play', () => {
-                    // 获取视频标签的 src 属性
-                    const videoSrc = video.src;
+                    // 获取视频标签的 id
+                    const videoId = video.id;
 
                     // 添加 window.onbeforeunload 事件监听器
                     window.addEventListener('beforeunload', () => {
                         // 判断视频标签是否在其他页面打开
-                        const videoNode = document.querySelector(videoSrc);
+                        const videoNode = document.getElementById(videoId);
                         if (videoNode && videoNode.parentNode !== document.body) {
                             // 撤销链接
                             URL.revokeObjectURL(videoObjectURL);
                         }
                     });
+                });
+
+                // 判断视频是否在当前页面打开
+                const isVideoInCurrentPage = () => {
+                    const videoNode = document.querySelector(video.src);
+                    return videoNode && videoNode.parentNode === document.body;
+                };
+
+                // 添加视频播放完毕事件监听器
+                video.addEventListener('ended', () => {
+                    if (isVideoInCurrentPage()) {
+                        // 视频在当前页面打开，不撤销链接
+                    } else {
+                        // 视频在其他页面打开，撤销链接
+                        URL.revokeObjectURL(videoObjectURL);
+                    }
                 });
             })
             .catch(error => {
