@@ -17,16 +17,22 @@ fileInput.addEventListener("change", e => {
     // 将元素添加到文档 body。
     document.body.appendChild(link);
 
-    // 显示生成成功的 data URL 链接显示窗口。
+    // 显示生成成功的 data URL 链接。
     const window = document.getElementById("window");
     window.textContent = dataUrl;
     window.style.display = "block";
+
+    // 将生成成功的 data URL 链接设置为 `dataUrl` 元素的文本内容。
+    const dataUrlElement = document.getElementById("dataUrl");
+    dataUrlElement.textContent = dataUrl;
   });
 
   reader.readAsDataURL(file);
 });
-
 </script>
 <div id="link"></div>
-<div id="window"></div>
+<div id="window">
+  <p>生成成功的 data URL 链接：</p>
+  <p id="dataUrl"></p>
+</div>
 <input type="file" id="fileInput">
