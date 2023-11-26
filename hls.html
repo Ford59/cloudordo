@@ -1,0 +1,41 @@
+<html>
+
+<head>
+  <title>dplayer播放m3u8</title>
+  <meta charset="UTF-8">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <script src="https://cdn.staticfile.org/hls.js/1.1.2/hls.min.js"></script>
+  <script src="https://cdn.staticfile.org/dplayer/1.26.0/DPlayer.min.js"></script>
+  <style>
+    #dplayer {
+      width: 500px
+    }
+  </style>
+  <script>
+    function init() {
+      const dp = new DPlayer({
+        element: document.getElementById('dplayer'),
+        video: {
+          //  pic: videoInfo.img, // 封面
+          url: "https://vod3.bdzybf3.com/20210509/ZMHA3RpS/1000kb/hls/index.m3u8",
+          type: 'customHls',
+          customType: {
+            customHls: function (video, player) {
+              const hls = new Hls()
+              hls.loadSource(video.src)
+              hls.attachMedia(video)
+            }
+          }
+        }
+      })
+    }
+  </script>
+</head>
+
+<body onload="init()">
+  <div>
+    <div id="dplayer"></div>
+  </div>
+</body>
+</html>
