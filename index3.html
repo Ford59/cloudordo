@@ -1,7 +1,7 @@
 <script>
 let xhr = new XMLHttpRequest();
 xhr.open("GET", "https://dcu30chsckoal.cloudfront.net/small+2.mp4");
-xhr.responseType = "arraybuffer";
+xhr.responseType = "blob";
 xhr.onload = (e) => {
   // 将 Blob 对象转换为可供 Safari 浏览器播放的 URL
   let url = URL.createObjectURL(xhr.response);
