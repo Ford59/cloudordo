@@ -11,7 +11,7 @@ fetch(videoUrl)
         videoPlayer.src = videoObjectURL;
 
         // Add event listener to revokeObjectURL when the video has loaded
-        videoPlayer.addEventListener('loadeddata', () => {
+        videoPlayer.addEventListener('playing', () => {
             URL.revokeObjectURL(videoObjectURL);
         });
     })
