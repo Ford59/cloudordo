@@ -10,12 +10,15 @@ fetch(videoUrl)
         const videoObjectURL = URL.createObjectURL(blob);
         videoPlayer.src = videoObjectURL;
 
-        // Add revokeObjectURL to clean up resources
-        URL.revokeObjectURL(videoObjectURL);
+        // Add event listener to revokeObjectURL when the video has loaded
+        videoPlayer.addEventListener('loadeddata', () => {
+            URL.revokeObjectURL(videoObjectURL);
+        });
     })
     .catch(error => {
         console.error('加载视频时出现错误：', error);
     });
+
 </script>
 <video id="video" src="" controls></video>
 <br>
