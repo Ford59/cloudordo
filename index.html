@@ -10,9 +10,6 @@ fetch(videoUrl)
         const videoObjectURL = URL.createObjectURL(blob);
         videoPlayer.src = videoObjectURL;
 
-        // Add event listener to revokeObjectURL when the video has loaded
-        videoPlayer.addEventListener('loadedmetadata', () => {
-            URL.revokeObjectURL(videoObjectURL);
         });
     })
     .catch(error => {
